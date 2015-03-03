@@ -7,9 +7,9 @@ end
 
 db_settings = {
   :adapter  => RUBY_PLATFORM == "java" ? "jdbcpostgresql" : "postgresql",
-  :database => "promiscuous",
-  :username => "postgres",
-  :password => nil,
+  :database => ENV['DB_NAME'],
+  :username => ENV['DB_USER'],
+  :password => ENV['DB_PASS'],
   :encoding => "utf8",
   :pool => 20,
 }

@@ -5,6 +5,8 @@ module Promiscuous::Publisher::Model::ActiveRecord
   require 'promiscuous/publisher/operation/active_record'
 
   included do
+    next unless self.table_exists?
+
     if !self.columns.collect(&:name).include?("_v")
       raise <<-help
       #{self} must include a _v column.  Create the following migration:
