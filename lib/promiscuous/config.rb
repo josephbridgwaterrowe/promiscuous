@@ -7,7 +7,8 @@ module Promiscuous::Config
                  :prefetch, :recovery_timeout, :recovery_interval, :logger, :subscriber_threads,
                  :version_field, :error_notifier, :transport_collection, :queue_policy, :test_mode,
                  :on_stats, :max_retries, :generation, :destroy_timeout, :destroy_check_interval,
-                 :error_exchange, :error_routing, :retry_routing, :error_ttl, :transport_persistence
+                 :error_exchange, :error_routing, :retry_routing, :error_ttl, :transport_persistence,
+                 :vhost
 
   def self.backend=(value)
     @@backend = value
@@ -82,6 +83,7 @@ module Promiscuous::Config
     self.destroy_check_interval ||= 10.minutes
     self.transport_persistence ||= best_transport_persistence
     self.test_mode            = set_test_mode
+    self.vhost ||= nil
   end
 
   def self.set_test_mode
