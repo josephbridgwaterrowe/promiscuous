@@ -8,9 +8,9 @@ module Promiscuous::Rabbit
 
       Net::HTTP.start(uri.host, uri.port,
         :use_ssl => uri.scheme == 'https') do |http|
-          request = Net::HTTP::Put.new(uri.request_uri, http_headers)
-          request.basic_auth(uri.user, uri.password) if uri.user
-          request.body = MultiJson.dump(attributes)
+        request = Net::HTTP::Put.new(uri.request_uri, http_headers)
+        request.basic_auth(uri.user, uri.password) if uri.user
+        request.body = MultiJson.dump(attributes)
 
         response = http.request(request)
 
@@ -41,7 +41,10 @@ module Promiscuous::Rabbit
     end
 
     def self.vhost
-      Promiscuous::Config.vhost || '%2f'
+      # %2f is an encoded forward slash (/)
+      return '%2f' if Promiscuous::Config.vhost.blank?
+
+      Promiscuous::Config.vhost
     end
   end
 end
