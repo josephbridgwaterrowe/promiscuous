@@ -71,6 +71,18 @@ User.create(:name => 'Yoda')`
 
 You should see the message "Hi Yoda!" appearing in the log file of the subscriber.
 
+### 5. Checking Migrations
+
+Historically promiscuous would check the schemas of subscribing models to ensure
+that the models had the required version column.
+
+Since this could get in the way when running the project this has been moved to
+a CLI command which can be run with the following command:
+
+```
+bundle exec promiscuous migrations
+```
+
 Promiscuous in Depth
 --------------------
 
