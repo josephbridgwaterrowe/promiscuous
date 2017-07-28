@@ -1,1 +1,1 @@
-spec/spec_helper/active_record.rb
+active_record.rb
